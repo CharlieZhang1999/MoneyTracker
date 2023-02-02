@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { ISummary } from '../types/ISummary';
-
+import { Link } from "react-router-dom";
 
 export const TrackerSummary: React.FC = () => {
 
@@ -22,6 +22,12 @@ export const TrackerSummary: React.FC = () => {
             <div className='expense-list'>
                 {expenseSummary.map((summary) => <div key={summary._id}><p>{summary._id} is {summary.total}</p></div>)}
             </div>
+
+            <Link to="/expenseDetail">
+                <button type="button">
+                    Click Me!
+                </button>
+            </Link>
         </div>
         
     )

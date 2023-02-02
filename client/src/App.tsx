@@ -2,8 +2,17 @@ import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { TrackerSummary } from './components/TrackerSummary';
+import { ExpenseDetail } from './components/ExpenseDetail';
 import { Header } from './components/Header';
 import { Button } from './components/Button';
+
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+import { Link } from "react-router-dom";
 interface ISummary{
   bills: number,
   grocery: number,
@@ -15,22 +24,15 @@ interface ISummary{
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Header title='Money Tracker'/>
-        <TrackerSummary />
-        {/* <Button eventHandler={} title="Add Expenses"/> */}
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-
-    </div>
+    <>
+      
+      <Router>
+        <Routes>
+          <Route path='/' element={<TrackerSummary />} ></Route>
+          <Route path='/expenseDetail' element={<ExpenseDetail />}></Route>
+        </Routes>
+      </Router>
+    </>
   );
 }
 

@@ -1,11 +1,18 @@
 import { Router } from 'express';
 import { Request, Response } from "express";
 import Expense, { IExpense } from '../models/Expense';
-
+import { getCurrentTime } from '../utils/time';
 const router: Router = Router();
-router.get('/', (req, res) => {
-    res.send('Hello');}
-)
+router.get('/', async (req, res) => {
+    try{
+        const expenseDetail = await Expense.find().sort({ time: -1 });
+
+        res.send(expenseDetail);
+    }
+    catch(err){
+        res.status(400).send(err);
+    };
+})
 
 router.get('/all', async (req: Request, res: Response) =>{
     // Todo: do the db find and sum the five category here
@@ -155,7 +162,7 @@ router.post('/', async (req: Request, res: Response) => {
         const newExpense: IExpense = new Expense({
             amount: req.body.amount,
             category: req.body.category,
-            time: req.body.time
+            time: getCurrentTime()
         })
         const addedExpense = await newExpense.save();
         res.send(addedExpense);
