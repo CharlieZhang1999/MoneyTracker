@@ -1,0 +1,39 @@
+.detail-container{
+    position: relative;
+}
+
+.back-button{
+    position: absolute;
+    top: 2vh;
+    left: 2vw;
+    border: none;
+    border-radius: 4px;
+}
+
+.arrow {
+    border: solid black;
+    color: black; 
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    
+}
+
+.form-control{
+    border: none !important
+}
+input {
+    float: right;
+    display: inline;
+    align-items: flex-end;
+    width: 40vw;
+}
+select{
+    float: right;
+    width: 40vw;
+}

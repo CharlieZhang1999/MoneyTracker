@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import { ISummary } from '../types/ISummary';
 import { Link } from "react-router-dom";
+import { Header } from './Header';
+import '../TrackerSummary.css'
+import Table from 'react-bootstrap/Table';
 
 export const TrackerSummary: React.FC = () => {
 
@@ -17,17 +20,30 @@ export const TrackerSummary: React.FC = () => {
     }, []);
 
     return (
-        <div className='tracker-container'>
-            <p>Expense Summary: </p>
-            <div className='expense-list'>
-                {expenseSummary.map((summary) => <div key={summary._id}><p>{summary._id} is {summary.total}</p></div>)}
-            </div>
+        <div className='TrackerSummary'>
+            <Header title='Money Tracker'/>
+            <div className='container'>
+                <p>Expense Summary: </p>
+                <div className='expense-list'>
+                    <Table striped bordered>
+                        <thead>
+                            <tr>
+                            <th>Category</th>
+                            <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {expenseSummary.map((summary) => <tr key={summary._id}><td>{summary._id}</td><td>${summary.total}</td></tr>)}
+                        </tbody>
+                    </Table>
+                </div>
 
-            <Link to="/expenseDetail">
-                <button type="button">
-                    Click Me!
-                </button>
-            </Link>
+                <Link to="/expenseDetail">
+                    <button className='add-button' type="button">
+                        Add Expenses
+                    </button>
+                </Link>
+            </div>
         </div>
         
     )
