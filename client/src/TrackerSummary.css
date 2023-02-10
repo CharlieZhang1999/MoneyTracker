@@ -1,10 +1,13 @@
 .TrackerSummary{
     /* justify-content: center; */
 }
-
+.container{
+    margin-top: 3vh;
+}
 .add-button{
     margin-left: 30vw;
     margin-right: 30vw; 
     background-color: #85b3f3;
     font-weight: bold;
+    box-shadow: 3px 3px black;
 }

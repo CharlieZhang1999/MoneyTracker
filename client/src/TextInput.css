@@ -1,0 +1,9 @@
+.input-container {
+    margin-right: 5vw !important;
+    position: relative;
+    float: right;
+    display: inline;
+    align-items: flex-end;
+    text-align: end;
+    /* width: 20vw; */
+}

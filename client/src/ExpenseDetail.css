@@ -27,13 +27,35 @@
 .form-control{
     border: none !important
 }
-input {
-    float: right;
-    display: inline;
-    align-items: flex-end;
-    width: 40vw;
+
+
+.amount-col{
+    text-align: right;
 }
-select{
-    float: right;
-    width: 40vw;
+
+.form-container{
+    margin-top: 2vh;
+    margin-left: 2vw;
+    margin-right: 2vw;
+}
+
+.form-control{
+    margin-bottom: 1vh;
+}
+
+.form-control.text-paragraph{
+    font-weight: bold;
+}
+.expense-details-list{
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 20vh
+}
+
+.expense-history.text-paragraph{
+    margin-bottom: 1vh;
+}
+
+.thead{
+    background-color: rgba(228, 227, 227, 0.97);
 }

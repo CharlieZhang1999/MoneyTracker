@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { ISummary } from '../types/ISummary';
 import { Link } from "react-router-dom";
 import { Header } from './Header';
+import { TextInput } from'./TextInput';
 import '../TrackerSummary.css'
 import Table from 'react-bootstrap/Table';
 
