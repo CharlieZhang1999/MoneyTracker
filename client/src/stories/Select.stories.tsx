@@ -1,23 +1,20 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { Header } from '../components/Header';
+import { Select } from '../components/Select';
 
 export default {
-  title: 'Custom/Header',
-  component: Header,
+  title: 'Custom/Select',
+  component: Select,
   parameters: {
     // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'fullscreen',
   },
-} as ComponentMeta<typeof Header>;
+} as ComponentMeta<typeof Select>;
 
-const Template: ComponentStory<typeof Header> = (args) => <Header {...args} />;
+const Template: ComponentStory<typeof Select> = (args) => <Select {...args} />;
 
 export const defaultHeader = Template.bind({});
 defaultHeader.args = {
-  title: "Custom Title"
 };
 
-export const LoggedOut = Template.bind({});
-LoggedOut.args = {};

@@ -8,6 +8,18 @@ import { Select } from './Select';
 import '../ExpenseDetail.css'
 import Table from 'react-bootstrap/Table';
 import { Button } from './Button';
+// import { Request, Response } from "express";
+
+interface ResBody {
+    amount: Number,
+    category: string
+}
+
+interface ResponseBody{
+    amount: Number,
+    category: string,
+    time: Number
+}
 
 export const ExpenseDetail: React.FC = () => {
 
@@ -27,6 +39,7 @@ export const ExpenseDetail: React.FC = () => {
         const detailResult = await result.json();
         setExpenseDetail(detailResult);
     }
+
     const inputRef = useRef<HTMLInputElement>(null);
     const selectRef = useRef<HTMLSelectElement>(null);;
 
@@ -49,14 +62,12 @@ export const ExpenseDetail: React.FC = () => {
     const addExpense = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         if(inputIsValid && selectIsValid){
-            const data = {
-                "amount": inputVal,
-                "category": selectVal
-            }
-            // console.log(data);
-                
+            const data: ResBody = {
+                amount: inputVal,
+                category: selectVal
+            }                
             
-            const postResponse = await fetch("http://localhost:5000/expense/", {
+            const postResponse: Response = await fetch("http://localhost:5000/expense/", {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -64,7 +75,7 @@ export const ExpenseDetail: React.FC = () => {
                 }
             });
 
-            const getResponse = await fetchExpenseDetails();
+            await fetchExpenseDetails();
         }
     }
 
