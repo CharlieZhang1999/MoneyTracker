@@ -3,3 +3,9 @@ export interface ISummary {
     total:number,
     
 }
+
+// export interface ISummary {
+//     amount: number
+//     category: string
+    
+// }

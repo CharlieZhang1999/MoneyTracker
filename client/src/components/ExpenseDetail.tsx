@@ -122,7 +122,7 @@ export const ExpenseDetail: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {expenseDetail.map((detail) => <tr key={detail._id}><td>{formatTime(detail.time)}</td><td>{detail.category}</td><td className="amount-col">{detail.amount}</td></tr>)}
+                        {expenseDetail.map((detail) => <tr key={detail._id}><td>{formatTime(detail.time)}</td><td>{detail.category}</td><td className="amount-col">${detail.amount}</td></tr>)}
                     </tbody>
                 </Table>
             </div>
