@@ -26,8 +26,8 @@ export const ExpenseDetail: React.FC = () => {
     const [expenseDetail, setExpenseDetail] = useState<IDetail[]>([]);
     const [inputIsValid, setInputIsValid] = useState<Boolean>(false);
     const [selectIsValid, setSelectIsValid] = useState<Boolean>(false);
-    const [inputVal, setInput] = useState<Number>(0);
-    const [selectVal, setSelect] = useState<string>("");
+    const [inputVal, setInput] = useState<number>(0);
+    const [selectVal, setSelect] = useState<string>('DEFAULT');
 
 
     useEffect(() => {
@@ -74,7 +74,10 @@ export const ExpenseDetail: React.FC = () => {
                     "Content-Type": 'application/json'
                 }
             });
-
+            setInput(0);
+            setInputIsValid(false);
+            setSelect('DEFAULT');
+            setSelectIsValid(false);
             await fetchExpenseDetails();
         }
     }
@@ -94,10 +97,10 @@ export const ExpenseDetail: React.FC = () => {
                         Add a new expense:
                     </div>
                     <div className='form-control'>
-                        <TextInput onChange={handleInputChange} reference={inputRef}/>
+                        <TextInput value={inputVal} onChange={handleInputChange} reference={inputRef}/>
                     </div>
                     <div className='form-control'>
-                        <Select onChange={handleSelectChange} reference={selectRef} />
+                        <Select value={selectVal} onChange={handleSelectChange} reference={selectRef} />
                     </div>
 
                     <div className='form-control' id='confirm-button'>
@@ -119,7 +122,7 @@ export const ExpenseDetail: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {expenseDetail.map((detail) => <tr><td>{formatTime(detail.time)}</td><td>{detail.category}</td><td className="amount-col">{detail.amount}</td></tr>)}
+                        {expenseDetail.map((detail) => <tr key={detail._id}><td>{formatTime(detail.time)}</td><td>{detail.category}</td><td className="amount-col">{detail.amount}</td></tr>)}
                     </tbody>
                 </Table>
             </div>
