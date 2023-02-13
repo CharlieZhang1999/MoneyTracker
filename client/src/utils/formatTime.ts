@@ -1,3 +1,7 @@
+export function getCurrentTime() {
+    return Date.now();
+}
+
 // Adds a leading 0 to numbers from 1 through 9
 // Returns as a string
 export function prependdedNumber(n: number) {

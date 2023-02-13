@@ -19,5 +19,3 @@ defaultHeader.args = {
   title: "Custom Title"
 };
 
-export const LoggedOut = Template.bind({});
-LoggedOut.args = {};

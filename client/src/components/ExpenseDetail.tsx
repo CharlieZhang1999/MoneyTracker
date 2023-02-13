@@ -8,19 +8,10 @@ import { Select } from './Select';
 import '../ExpenseDetail.css'
 import Table from 'react-bootstrap/Table';
 import { Button } from './Button';
+import { socket } from '../utils/socket'
+import { SendBody } from '../types/SendBody';
+import { getCurrentTime } from '../utils/formatTime';
 // import { Request, Response } from "express";
-
-interface ResBody {
-    amount: Number,
-    category: string
-}
-
-interface ResponseBody{
-    amount: Number,
-    category: string,
-    time: Number
-}
-
 export const ExpenseDetail: React.FC = () => {
 
     const [expenseDetail, setExpenseDetail] = useState<IDetail[]>([]);
@@ -29,8 +20,13 @@ export const ExpenseDetail: React.FC = () => {
     const [inputVal, setInput] = useState<number>(0);
     const [selectVal, setSelect] = useState<string>('DEFAULT');
 
-
+    // const socket: Socket = io();
     useEffect(() => {
+        console.log("loading useEffect");
+        socket.on('receiveExpense',  (receivedExpense: IDetail) => {
+            // console.log("receive expense");
+            setExpenseDetail(expenseDetail => [receivedExpense, ... expenseDetail])
+        });
         fetchExpenseDetails();
     },[]);
 
@@ -62,9 +58,11 @@ export const ExpenseDetail: React.FC = () => {
     const addExpense = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         if(inputIsValid && selectIsValid){
-            const data: ResBody = {
+            const data: IDetail = {
+                _id: "",
                 amount: inputVal,
-                category: selectVal
+                category: selectVal,
+                time: getCurrentTime()
             }                
             
             const postResponse: Response = await fetch("http://localhost:5000/expense/", {
@@ -79,6 +77,7 @@ export const ExpenseDetail: React.FC = () => {
             setSelect('DEFAULT');
             setSelectIsValid(false);
             await fetchExpenseDetails();
+            socket.emit('newExpense', data);
         }
     }
 

@@ -15,6 +15,7 @@ export default {
 const Template: ComponentStory<typeof Select> = (args) => <Select {...args} />;
 
 export const defaultHeader = Template.bind({});
-defaultHeader.args = {
-};
+// defaultHeader.args = {
+//   value: "DEFAULT"
+// };
 

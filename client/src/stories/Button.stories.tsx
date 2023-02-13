@@ -17,6 +17,7 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 export const defaultButton = Template.bind({});
 defaultButton.args = {
   eventHandler: () => {},
-  title: "Button Title"
+  title: "Custom",
+  active: false
 };
 

@@ -7,27 +7,34 @@ import '../TrackerSummary.css'
 import Table from 'react-bootstrap/Table';
 import { IsEqualCustomizer } from 'lodash';
 import { IDetail } from '../types/IDetail';
-
+import { socket } from '../utils/socket'
+import exp from 'constants';
 export const TrackerSummary: React.FC = () => {
 
     const [expenseSummary, setExpenseSummary] = useState<number[]>([]);
     
     useEffect(() => {
-        async function fetchExpenseSummary(){
-            const result = await fetch("http://localhost:5000/expense/all");
-            const summaryResult = await result.json();
-            const sortList:string[] = ["Bills", "Grocery", "Health", "Travel", "Others"];
-    
-    
-            const sortedSummary: ISummary[] = summaryResult.sort(function(a: ISummary, b:ISummary) {
-                return sortList.indexOf( a._id ) - sortList.indexOf( b._id );
-            });
 
-            // console.log(summaryResult);
-            setExpenseSummary([sortedSummary[0].total, sortedSummary[1].total, sortedSummary[2].total, sortedSummary[3].total, sortedSummary[4].total]);
-        }
+        socket.on('receiveExpense',  (receivedExpense: IDetail) => {
+            fetchExpenseSummary();
+        });
+        
         fetchExpenseSummary();
+        
     }, []);
+
+    async function fetchExpenseSummary(){
+        const result = await fetch("http://localhost:5000/expense/all");
+        const summaryResult = await result.json();
+        const sortList:string[] = ["Bills", "Grocery", "Health", "Travel", "Others"];
+
+
+        const sortedSummary: ISummary[] = summaryResult.sort(function(a: ISummary, b:ISummary) {
+            return sortList.indexOf( a._id ) - sortList.indexOf( b._id );
+        })
+        // console.log(summaryResult);
+        setExpenseSummary([sortedSummary[0].total, sortedSummary[1].total, sortedSummary[2].total, sortedSummary[3].total, sortedSummary[4].total]);
+    };
 
     return (
         <div className='TrackerSummary'>
