@@ -9,7 +9,7 @@ interface TextInputProps {
 export const TextInput: React.FC<TextInputProps> = (props: TextInputProps) => {
     return (
         <>
-            <label>Amount:</label>
+            <label>Amount :</label>
             <div className="input-container">
                 <InputNumber min={0} step={0.01} value={props.value} onChange={props.onChange} />
             </div>
