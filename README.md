@@ -2,7 +2,7 @@
 A TypeScript based app that helps to track different category of expense
 
 ## Demo
-[![Click the image below to watch the demo!](money-trakcer.png)](https://youtu.be/Ep0aPpT0DnQ)
+[![Click the image below to watch the demo!](money-tracker.png)](https://youtu.be/Ep0aPpT0DnQ)
 
 ## 🏃 How to run
 
